@@ -24,17 +24,18 @@
             <input type="text" class="form-control" name="website" value="{{ $farm->website }}">
           </div>
           <h3 class='h5 pb-2'>Markets</h3>
-          {{-- <div class="row form-group">
-            @foreach ($farms as $id => $farm)
+          <div class="row form-group">
+            @foreach ($markets as $id => $market)
               <div class="form-check col-md-6">
-                <label class="form-check-label" for="{{ $farm }}">
-                  <input type="checkbox" name="farms[]" value="{{ $id }}"
-                    {{ $farm->farms()->allRelatedIds()->contains($id) ? "checked" : "" }}>
-                  {{ $farm }}
+                <label class="form-check-label" for="{{ $market }}">
+                  <input type="checkbox" name="markets[]" value="{{ $id }}"
+                  
+                  {{ $farm->markets()->allRelatedIds()->contains($id) ? "checked" : ""}}>
+                    {{ $market }}
                 </label>
               </div>
             @endforeach
-          </div> --}}
+          </div>
           <button type="submit" class="btn btn-primary">
             Update
           </button>

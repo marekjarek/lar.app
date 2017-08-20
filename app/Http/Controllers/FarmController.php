@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Farm;
+use App\Market;
 use Illuminate\Http\Request;
 
 class FarmController extends Controller
@@ -59,7 +60,9 @@ class FarmController extends Controller
      */
     public function edit(Farm $farm)
     {
-        return view('farms.edit', ['farm' => $farm]);
+        $markets = Market::get()->pluck('name', 'id')->sortBy('name');
+        // dd($markets);
+        return view('farms.edit', compact('farm', 'markets'));
     }
 
     /**
@@ -71,7 +74,9 @@ class FarmController extends Controller
      */
     public function update(Request $request, Farm $farm)
     {
+
         $farm->update($request->all());
+        $farm->markets()->sync($request->markets);
         return redirect('farms');
     }
 
