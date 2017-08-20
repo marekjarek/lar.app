@@ -14,8 +14,8 @@ class FarmController extends Controller
      */
     public function index()
     {
-        $farm = Farm::orderBy('name', 'asc')->paginate(9);
-        return view('farms.index', ['farm' => $farm]);
+        $farms = Farm::orderBy('name', 'asc')->paginate(9);
+        return view('farms.index', ['farms' => $farms]);
     }
 
     /**
@@ -37,7 +37,7 @@ class FarmController extends Controller
     public function store(Request $request)
     {
         Farm::create($request->all());
-        return redirect('farms')->wiht('status', 'New Farm was created');
+        return redirect('farms')->with('status', 'New Farm was created');
     }
 
     /**
@@ -48,7 +48,7 @@ class FarmController extends Controller
      */
     public function show(Farm $farm)
     {
-        return wiew('farms.show', compact('farm'));
+        return view('farms.show', compact('farm'));
     }
 
     /**
